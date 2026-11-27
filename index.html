@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10191c">
+  <meta name="description" content="Mentes Claras: historias reales y anónimas para prevenir el consumo de sustancias.">
+  <title>Mentes Claras | Historias reales</title>
+  <style>
+    :root {
+      --bg: #10191c;
+      --panel: #1b272b;
+      --panel-2: #223136;
+      --text: #f3f6f5;
+      --muted: #bdc9c8;
+      --line: #3a4b4f;
+      --accent: #8ed8c3;
+      --accent-dark: #173b35;
+      --focus: #f4d58a;
+      --radius: 20px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(142,216,195,.10), transparent 26rem),
+        radial-gradient(circle at 90% 45%, rgba(111,157,170,.10), transparent 24rem),
+        var(--bg);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); }
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+      outline: 3px solid var(--focus); outline-offset: 3px;
+    }
+    .wrap { width: min(1080px, calc(100% - 36px)); margin: 0 auto; }
+    header { padding: 22px 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+    .nav { display:flex; justify-content:space-between; align-items:center; gap:18px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.02em; }
+    .brand-mark {
+      width:42px; height:42px; display:grid; place-items:center; border-radius:14px;
+      color:#10211e; background:var(--accent); font-size:1.15rem;
+    }
+    .nav a { text-decoration:none; color:var(--muted); font-size:.95rem; }
+    .nav a:hover { color:var(--text); }
+    .hero { padding: clamp(54px, 9vw, 105px) 0 62px; }
+    .eyebrow { color:var(--accent); font-weight:750; text-transform:uppercase; letter-spacing:.13em; font-size:.78rem; }
+    h1 { max-width:800px; margin:14px 0 18px; font-size:clamp(2.35rem, 7vw, 5rem); line-height:1.02; letter-spacing:-.045em; }
+    .lead { max-width:720px; color:var(--muted); font-size:clamp(1.05rem, 2vw, 1.25rem); }
+    .hero-actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:28px; }
+    .btn {
+      display:inline-flex; justify-content:center; align-items:center; gap:9px;
+      min-height:48px; padding:12px 20px; border:1px solid transparent; border-radius:999px;
+      background:var(--accent); color:#10211e; font-weight:800; text-decoration:none; cursor:pointer;
+      font:inherit; font-weight:800; transition:transform .18s, background .18s;
+    }
+    .btn:hover { transform:translateY(-2px); background:#a6e6d4; }
+    .btn.secondary { background:transparent; border-color:var(--line); color:var(--text); }
+    .btn.secondary:hover { background:var(--panel-2); }
+    .notice {
+      margin:0 0 26px; padding:18px 20px; border:1px solid var(--line); border-radius:16px;
+      background:rgba(34,49,54,.65); color:var(--muted);
+    }
+    .notice strong { color:var(--text); }
+    .section { padding:28px 0 74px; }
+    .section-head { margin-bottom:26px; }
+    h2 { margin:0 0 8px; font-size:clamp(1.7rem, 4vw, 2.5rem); letter-spacing:-.025em; }
+    .section-head p { margin:0; color:var(--muted); max-width:720px; }
+    .grid { display:grid; grid-template-columns: minmax(0, 1.1fr) minmax(260px, .75fr); gap:24px; align-items:start; }
+    .card { background:var(--panel); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); padding:clamp(20px, 4vw, 34px); }
+    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+    .field { min-width:0; }
+    .field.full { grid-column:1/-1; }
+    label, legend { display:block; margin-bottom:8px; font-weight:750; }
+    .hint { display:block; color:var(--muted); font-size:.9rem; margin-top:5px; }
+    input[type="number"], select, textarea {
+      width:100%; padding:13px 14px; border-radius:12px; border:1px solid var(--line);
+      color:var(--text); background:#121d20; font:inherit;
+    }
+    textarea { min-height:112px; resize:vertical; }
+    fieldset { border:0; padding:0; margin:0; min-width:0; }
+    .choices { display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:10px; }
+    .choice {
+      display:flex; align-items:flex-start; gap:10px; padding:11px 12px; border-radius:12px;
+      border:1px solid var(--line); background:#172226; color:var(--muted); font-weight:550;
+      cursor:pointer; margin:0;
+    }
+    .choice:has(input:checked) { border-color:var(--accent); color:var(--text); background:rgba(142,216,195,.08); }
+    input[type="checkbox"], input[type="radio"] { accent-color:var(--accent); margin-top:5px; flex:0 0 auto; }
+    .divider { height:1px; background:var(--line); margin:24px 0; }
+    .side-card { position:sticky; top:20px; }
+    .side-card h3 { margin:0 0 12px; font-size:1.25rem; }
+    .side-card p, .side-card li { color:var(--muted); }
+    .side-card ul { padding-left:20px; }
+    .quote { border-left:4px solid var(--accent); padding:10px 0 10px 17px; margin:22px 0 0; color:var(--text); font-weight:650; }
+    .checkline { display:flex; gap:11px; align-items:flex-start; color:var(--muted); }
+    .checkline input { margin-top:6px; }
+    .submit-row { display:flex; flex-wrap:wrap; gap:12px; align-items:center; margin-top:22px; }
+    .fine { color:var(--muted); font-size:.86rem; }
+    .status { display:none; margin-top:18px; padding:15px 17px; border-radius:12px; background:var(--accent-dark); border:1px solid #477b6e; color:#e6fff7; }
+    .status.show { display:block; }
+    .help { background:linear-gradient(130deg, rgba(142,216,195,.12), rgba(34,49,54,.8)); }
+    footer { border-top:1px solid rgba(255,255,255,.08); padding:26px 0 38px; color:var(--muted); font-size:.9rem; }
+    footer .foot { display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px; }
+    @media (max-width:760px) {
+      .grid { grid-template-columns:1fr; }
+      .side-card { position:static; }
+    }
+    @media (max-width:540px) {
+      .wrap { width:min(100% - 24px, 1080px); }
+      header { padding:15px 0; }
+      .nav a { font-size:.85rem; }
+      .form-grid { grid-template-columns:1fr; }
+      .field.full { grid-column:auto; }
+      .choices { grid-template-columns:1fr; }
+      .card { padding:20px 16px; }
+      .hero { padding-top:54px; }
+      .btn { width:100%; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } *, *::before, *::after { transition:none !important; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">MC</span><span>MENTES CLARAS</span></div>
+      <a href="#historia">Compartir mi historia ↓</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <div class="eyebrow">Historias reales · Prevención · Sin juicios</div>
+      <h1>Tu historia puede ayudar a alguien a decir que no.</h1>
+      <p class="lead">Un espacio para compartir experiencias de manera respetuosa y anónima. No se trata de presumir el consumo, sino de hablar con honestidad sobre lo que pasó y prevenir.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#historia">Quiero contar mi historia <span aria-hidden="true">→</span></a>
+        <a class="btn secondary" href="#ayuda">Necesito información de ayuda</a>
+      </div>
+    </section>
+
+    <section class="wrap section" id="historia">
+      <div class="notice"><strong>Tu privacidad importa.</strong> No escribas tu nombre, escuela, dirección, redes sociales ni datos que permitan identificarte. Este ejemplo funciona solo en tu dispositivo: no envía ni publica respuestas.</div>
+      <div class="section-head">
+        <h2>Cuenta tu historia</h2>
+        <p>Responde solo lo que quieras compartir. Puedes dejar preguntas sin contestar.</p>
+      </div>
+
+      <div class="grid">
+        <form class="card" id="storyForm">
+          <div class="form-grid">
+            <div class="field">
+              <label for="age">1. ¿Cuántos años tenías cuando lo probaste?</label>
+              <input id="age" name="age" type="number" min="1" max="100" placeholder="Edad (opcional)">
+            </div>
+
+            <fieldset class="field">
+              <legend>2. ¿Qué consumiste?</legend>
+              <div class="choices">
+                <label class="choice"><input type="checkbox" name="substance" value="Alcohol">Alcohol</label>
+                <label class="choice"><input type="checkbox" name="substance" value="Cigarro">Cigarro</label>
+                <label class="choice"><input type="checkbox" name="substance" value="Vape">Vape</label>
+                <label class="choice"><input type="checkbox" name="substance" value="Marihuana">Marihuana</label>
+                <label class="choice"><input type="checkbox" name="substance" value="Otra">Otra / Prefiero no decirlo</label>
+              </div>
+            </fieldset>
+
+            <fieldset class="field full">
+              <legend>3. ¿Por qué lo probaste?</legend>
+              <div class="choices">
+                <label class="choice"><input type="checkbox" name="reason" value="Curiosidad">Curiosidad</label>
+                <label class="choice"><input type="checkbox" name="reason" value="Presión de amigos">Presión de amigos</label>
+                <label class="choice"><input type="checkbox" name="reason" value="Estrés o problemas">Estrés / problemas</label>
+                <label class="choice"><input type="checkbox" name="reason" value="Fiesta">Fiesta</label>
+              </div>
+              <label for="otherReason" class="hint">Otra razón (opcional)</label>
+              <input id="otherReason" name="otherReason" type="text" maxlength="160" placeholder="Escribe aquí sin incluir datos personales">
+            </fieldset>
+
+            <div class="field full">
+              <label for="first">4. ¿Qué sentiste al principio?</label>
+              <textarea id="first" name="first" maxlength="1200" placeholder="Comparte solo lo que te sientas cómodo/a contando."></textarea>
+            </div>
+            <div class="field full">
+              <label for="after">5. ¿Qué pasó después? ¿Qué consecuencias tuviste?</label>
+              <textarea id="after" name="after" maxlength="1600" placeholder="Puedes hablar de cómo te sentiste y qué aprendiste."></textarea>
+            </div>
+            <div class="field full">
+              <label for="impact">6. ¿Cómo afectó tu escuela, tu salud o tu familia?</label>
+              <textarea id="impact" name="impact" maxlength="1600" placeholder="No incluyas nombres ni detalles que identifiquen a otras personas."></textarea>
+            </div>
+            <div class="field full">
+              <label for="advice">7. ¿Qué le dirías a alguien que hoy quiere probarlo?</label>
+              <textarea id="advice" name="advice" maxlength="1200" placeholder="Un consejo, una reflexión o algo que te habría gustado saber."></textarea>
+            </div>
+
+            <fieldset class="field full">
+              <legend>8. ¿Te gustaría recibir información de ayuda?</legend>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="helpInfo" value="Sí">Sí</label>
+                <label class="choice"><input type="radio" name="helpInfo" value="No">No</label>
+                <label class="choice"><input type="radio" name="helpInfo" value="Prefiero no responder">Prefiero no responder</label>
+              </div>
+            </fieldset>
+          </div>
+
+          <div class="divider"></div>
+          <label class="checkline"><input type="checkbox" id="consent"> <span>Entiendo que, si esta historia se publica más adelante, debe revisarse y compartirse de forma anónima con fines de prevención. Sé que este prototipo no la envía ni la publica.</span></label>
+          <div class="submit-row">
+            <button class="btn" type="submit">Revisar mi historia</button>
+            <button class="btn secondary" type="reset">Limpiar formulario</button>
+          </div>
+          <p class="fine">No agregues información sobre dónde conseguir sustancias, cómo consumirlas ni experiencias que promuevan su uso.</p>
+          <div class="status" id="status" role="status" aria-live="polite"></div>
+        </form>
+
+        <aside class="card side-card help" id="ayuda">
+          <h3>¿Necesitas ayuda ahora?</h3>
+          <p>No estás solo/a. Pedir apoyo es una buena decisión y no tienes que resolverlo todo sin compañía.</p>
+          <ul>
+            <li>Habla con el orientador de tu escuela.</li>
+            <li>Busca a un adulto de confianza, como un familiar o docente.</li>
+            <li>Si tú o alguien más está en peligro inmediato, pide ayuda a un adulto y contacta los servicios de emergencia de tu localidad.</li>
+          </ul>
+          <div class="quote">Compartir tu experiencia no te hace débil; puede ser un paso valiente.</div>
+          <div class="divider"></div>
+          <h3>Reglas de la comunidad</h3>
+          <ul>
+            <li>No publicamos nombres ni datos personales.</li>
+            <li>No se permiten ventas ni indicaciones para conseguir o consumir sustancias.</li>
+            <li>Tratamos cada historia con respeto, sin burlas ni juicios.</li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap foot">
+      <span><strong>MENTES CLARAS</strong> — Historias reales para prevenir.</span>
+      <span>Un espacio informativo y de apoyo.</span>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('storyForm');
+    const statusBox = document.getElementById('status');
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const consent = document.getElementById('consent').checked;
+      if (!consent) {
+        statusBox.textContent = 'Para continuar, confirma que leíste la nota de privacidad y publicación anónima.';
+        statusBox.classList.add('show');
+        document.getElementById('consent').focus();
+        return;
+      }
+      statusBox.textContent = 'Tu formulario está completo para revisión en esta demostración. No se ha enviado ni guardado ninguna respuesta. Para recibir historias de verdad, el sitio necesitará un servidor seguro, moderación y un aviso de privacidad antes de publicarse.';
+      statusBox.classList.add('show');
+    });
+    form.addEventListener('reset', () => {
+      statusBox.classList.remove('show');
+      statusBox.textContent = '';
+    });
+  </script>
+</body>
+</html>
